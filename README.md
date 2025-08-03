@@ -1,6 +1,6 @@
 # Telegram Chatbot with OpenRouter LLM Integration
 
-This is a PHP-based Telegram bot that uses OpenRouter's free LLM API to respond to messages in Telegram group chats. The bot can respond when mentioned directly or when users reply to its messages, enabling conversational interactions.
+This is a PHP-based Telegram bot that uses OpenRouter's free LLM API to respond to messages in Telegram group chats. The bot can respond when mentioned directly or when users reply to its messages, enabling conversational interactions. It also automatically tracks groups where it's added and can be configured to only respond in specific groups.
 
 ## Features
 

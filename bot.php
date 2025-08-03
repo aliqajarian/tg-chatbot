@@ -60,11 +60,19 @@ function handleMessage($message) {
         $allowedGroups = getAllowedGroups();
         if (empty($allowedGroups) || in_array($chatId, $allowedGroups)) {
             if ($shouldRespond) {
+                // Send initial "processing" message
+                $processingMessageId = sendReply($telegramBotToken, $chatId, $messageId, "🧠 Processing your request...");
+                
                 // Get response from LLM
                 $response = getLLMResponse($question, $openRouterApiKey, $llmModel, $maxTokens, $systemInstructions);
                 
-                // Reply to the message with the LLM response
-                sendReply($telegramBotToken, $chatId, $messageId, $response);
+                // Edit the processing message with the LLM response
+                if ($processingMessageId) {
+                    editMessage($telegramBotToken, $chatId, $processingMessageId, $response);
+                } else {
+                    // Fallback to sending a new message if editing fails
+                    sendReply($telegramBotToken, $chatId, $messageId, $response);
+                }
             }
         }
     }
@@ -262,6 +270,39 @@ function sendReply($token, $chatId, $messageId, $text) {
     ];
     
     $context = stream_context_create($options);
+    $response = file_get_contents($url, false, $context);
+    
+    // Parse response to get message ID
+    if ($response !== false) {
+        $responseData = json_decode($response, true);
+        if (isset($responseData['result']['message_id'])) {
+            return $responseData['result']['message_id'];
+        }
+    }
+    
+    return false;
+}
+
+// Function to edit a message
+function editMessage($token, $chatId, $messageId, $text) {
+    $url = "https://api.telegram.org/bot{$token}/editMessageText";
+    
+    $data = [
+        'chat_id' => $chatId,
+        'message_id' => $messageId,
+        'text' => $text
+    ];
+    
+    $options = [
+        'http' => [
+            'header' => "Content-Type: application/json\r\n",
+            'method' => 'POST',
+            'content' => json_encode($data)
+        ]
+    ];
+    
+    $context = stream_context_create($options);
     file_get_contents($url, false, $context);
 }
+
 ?>
