@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram LLM Bot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .feature {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-left: 4px solid #0088cc;
+            background-color: #f9f9f9;
+        }
+        .feature h3 {
+            margin-top: 0;
+            color: #0088cc;
+        }
+        .setup-steps {
+            counter-reset: step-counter;
+        }
+        .setup-steps li {
+            margin-bottom: 15px;
+            counter-increment: step-counter;
+            list-style: none;
+            position: relative;
+            padding-left: 40px;
+        }
+        .setup-steps li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #0088cc;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Telegram LLM Bot</h1>
+        
+        <div class="feature">
+            <h3>About This Bot</h3>
+            <p>This is a PHP-based Telegram bot that integrates with OpenRouter's free LLM API to provide AI-powered responses in group chats. When you mention the bot in a group chat, it will respond to your question using advanced language models.</p>
+        </div>
+        
+        <div class="feature">
+            <h3>Features</h3>
+            <ul>
+                <li>Responds to mentions in Telegram group chats</li>
+                <li>Uses free LLM models from OpenRouter</li>
+                <li>Easy to configure and deploy</li>
+                <li>Supports multiple LLM models</li>
+                <li>Customizable response length and behavior</li>
+            </ul>
+        </div>
+        
+        <div class="feature">
+            <h3>Setup Instructions</h3>
+            <ol class="setup-steps">
+                <li><strong>Get Telegram Bot Token</strong> - Talk to <a href="https://t.me/BotFather">@BotFather</a> on Telegram and create a new bot to get your token.</li>
+                <li><strong>Get OpenRouter API Key</strong> - Sign up at <a href="https://openrouter.ai/">OpenRouter.ai</a> to get your free API key.</li>
+                <li><strong>Configure the Bot</strong> - Edit <code>config.php</code> and add your Telegram bot token and OpenRouter API key.</li>
+                <li><strong>Deploy to Web Server</strong> - Upload all files to a PHP-enabled web server with SSL.</li>
+                <li><strong>Set Webhook</strong> - Configure Telegram to send updates to your bot using the provided URL.</li>
+                <li><strong>Add to Group Chat</strong> - Add your bot to a Telegram group chat and give it permission to read and send messages.</li>
+            </ol>
+        </div>
+        
+        <div class="feature">
+            <h3>Usage</h3>
+            <p>Once your bot is set up in a group chat, simply mention it in your message to get a response:</p>
+            <p><code>@yourbotname What is the capital of France?</code></p>
+            <p>The bot will reply directly to your message with an AI-generated answer.</p>
+        </div>
+        
+        <div class="feature">
+            <h3>Customization</h3>
+            <p>You can customize the bot by modifying <code>config.php</code>:</p>
+            <ul>
+                <li>Change the LLM model (multiple free options available)</li>
+                <li>Adjust the maximum response length</li>
+                <li>Modify the system instructions for the AI</li>
+                <li>Configure which chat types the bot responds in</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>Telegram LLM Bot &copy; 2025 | Open Source under MIT License</p>
+    </div>
+</body>
+</html>
